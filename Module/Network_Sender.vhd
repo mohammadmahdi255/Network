@@ -3,106 +3,212 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 
-entity Network_Sender is
-	generic
-	(
-		WIDTH : integer := 8
-	);
+entity Data_Link is
 	port
 	(
-		i_EN     : in  std_logic;
-		i_CLK    : in  std_logic;
-		i_U2X    : in  std_logic;
-		i_UCD    : in  std_logic_vector (15 downto 0);
-		i_STR    : in  std_logic;
-		i_DATA   : in  std_logic_vector (WIDTH - 1 downto 0);
-		o_READY  : out std_logic;
-
-		o_TX_SDO : out std_logic;
-		i_RX_SDI : in  std_logic
+		i_EN      : in  std_logic;
+		i_CLK     : in  std_logic;
+		
+		-- FIFO TX buffer pins
+		i_TX_EMPTY   : in  std_logic;
+		i_TX_DATA    : in  std_logic_vector (7 downto 0);
+		o_TX_RD_EN   : out std_logic;
+		
+		-- FIFO RX buffer pins
+		i_RX_FULL    : in  std_logic;
+		o_RX_DATA    : out std_logic_vector (7 downto 0);
+		o_RX_WR_EN   : out std_logic;
+		
+		-- UART TX Pins
+		o_TX_STR  : out std_logic;
+		i_TX_RDY  : in  std_logic;
+		o_TX_DATA : out std_logic_vector (7 downto 0);
+		
+		-- UART RX Pins
+		o_RX_CLR  : out std_logic;
+		i_RX_RDY  : in  std_logic;
+		i_RX_DATA : in std_logic_vector (7 downto 0)
 	);
-end Network_Sender;
+end Data_Link;
 
-architecture RTL of Network_Sender is
+architecture RTL of Data_Link is
 
-	type t_FSM is (IDLE, REQUEST, WAIT_ACK);
-	signal r_PR_ST   : t_FSM     := IDLE;
-
-	signal r_TX_STR  : std_logic := '0';
-	signal r_TX_RDY  : std_logic := '0';
-	signal r_RX_CLR  : std_logic := '0';
-	signal r_RX_RDY  : std_logic := '0';
-	signal r_RX_DV   : std_logic := '0';
-	signal r_TX_DATA : std_logic_vector (WIDTH - 1 downto 0);
-	signal r_RX_DATA : std_logic_vector (WIDTH - 1 downto 0);
-
+	type t_FSM is (
+		IDLE,
+		SFD,
+		DEST_MAC,
+		SRC_MAC,
+		DATA_LENGTH,
+		DATA,
+		CRC
+	);
+	
+	signal r_TX_PR_ST   : t_FSM     := IDLE;	
+	signal r_RX_PR_ST   : t_FSM     := IDLE;
+	
+	signal r_TX_STR         : std_logic := '0';
+	signal r_TX_DATA_LENGTH : unsigned(15 downto 0) := (others => '0');
+	
+	signal r_RX_CLR         : std_logic := '0';
+	signal r_RX_DATA_LENGTH : unsigned(15 downto 0) := (others => '0');
+	
 begin
 
-	UART : entity WORK.UART
-		generic
-		map
-		(
-		WIDTH => WIDTH
-		)
-		port map
-		(
-			i_EN        => i_EN,
-			i_CLK       => i_CLK,
-
-			i_U2X       => i_U2X,
-			i_UCD       => i_UCD,
-			i_PARITY_EN => '1',
-
-			i_TX_STR    => r_TX_STR,
-			o_TX_RDY    => r_TX_RDY,
-			i_RX_CLR    => r_RX_CLR,
-			o_RX_RDY    => r_RX_RDY,
-			o_RX_DV     => r_RX_DV,
-
-			i_TX_DATA   => r_TX_DATA,
-			o_RX_DATA   => r_RX_DATA,
-
-			o_TX_SDO    => o_TX_SDO,
-			i_RX_SDI    => i_RX_SDI
-		);
-
-	SEND_DATA : process (i_EN, i_CLK)
+	o_TX_STR <= r_TX_STR;
+	o_RX_CLR <= r_RX_CLR;
+	
+	TX_FRAME : process (i_EN, i_CLK)
+		variable v_COUNTER   : unsigned(15 downto 0) := (others => '0');
 	begin
 
 		if i_EN = '0' then
-			r_PR_ST   <= IDLE;
-			o_NX_DATA <= '1';
+			r_TX_PR_ST <= IDLE;
+			v_COUNTER := (others => '0');
+			o_TX_DATA <= (others => '0');
+			r_TX_DATA_LENGTH <= (others => '0');
+			r_TX_STR <= '0';
+			o_TX_RD_EN <= '0';
+			
 		elsif rising_edge(i_CLK) then
-
-			case r_PR_ST is
-
-				when IDLE =>
-					if i_STR = '1' then
-						r_TX_DATA <= i_DATA;
-						r_TX_STR  <= '1';
-					end if;
-
-					if r_TX_RDY = '0' then
-						r_TX_STR  <= '0';
-						o_NX_DATA <= '0';
-						r_PR_ST   <= REQUEST;
-					end if;
-
-				when REQUEST =>
-					if r_TX_RDY = '0' then
-						r_TX_STR  <= '0';
-						o_NX_DATA <= '0';
-						r_PR_ST   <= REQUEST;
-					end if;
-
-				when WAIT_ACK =>
-					o_TX_STR <= '0';
-					if true then
-					end if;
-			end case;
-
+		
+			o_TX_RD_EN <= '0';
+			if i_TX_RDY = '0' then
+				r_TX_STR <= '0';
 			end if;
+			
+			if i_TX_RDY = '1' and r_TX_STR = '0' and i_TX_EMPTY = '0' then
+			
+				o_TX_DATA <= i_TX_DATA;
+				o_TX_RD_EN  <= not i_TX_EMPTY;
+				r_TX_STR <= not i_TX_EMPTY;
+				
+				case r_TX_PR_ST is
+					when IDLE =>
+						if i_TX_DATA = x"7E" then
+							r_TX_PR_ST <= SFD;
+						else
+							r_TX_STR <= '0';
+						end if;
+					when SFD =>
+						r_TX_PR_ST <= DEST_MAC;
+					when DEST_MAC =>
+						r_TX_PR_ST <= SRC_MAC;
+					when SRC_MAC =>
+						r_TX_DATA_LENGTH(15 downto 8) <= unsigned(i_TX_DATA);
+						r_TX_PR_ST <= DATA_LENGTH;
+					when DATA_LENGTH =>
+						if v_COUNTER = x"0000" then
+							r_TX_DATA_LENGTH(7 downto 0) <= unsigned(i_TX_DATA);
+							v_COUNTER := v_COUNTER + 1;
+						else
+							v_COUNTER := (others => '0');
+							if r_TX_DATA_LENGTH = x"0000" then
+								r_TX_PR_ST <= CRC;
+							else
+								r_TX_PR_ST <= DATA;
+							end if;
+						end if;
+						
+					when DATA => 
+						v_COUNTER := v_COUNTER + 1;
+						if v_COUNTER = r_TX_DATA_LENGTH then
+							v_COUNTER := (others => '0');
+							r_TX_PR_ST   <= CRC;
+						end if;
+						
+					when CRC =>
+						v_COUNTER := v_COUNTER + 1;
+						
+				end case;
+				
+			end if;
+			
+			if r_TX_PR_ST = CRC and v_COUNTER = x"0004" then
+				v_COUNTER := (others => '0');
+				if i_TX_EMPTY = '0' and i_TX_DATA = x"7E" then
+					r_TX_PR_ST <= SFD;
+				else 
+					r_TX_PR_ST <= IDLE;
+				end if;
+			end if;
+			
+		end if;
 
-		end process SEND_DATA;
+	end process TX_FRAME;
+	
+	
+	RX_FRAME : process (i_EN, i_CLK)
+		variable v_COUNTER   : unsigned(15 downto 0) := (others => '0');
+	begin
 
-	end RTL;
+		if i_EN = '0' then
+			r_RX_PR_ST <= IDLE;
+			v_COUNTER := (others => '0');
+			o_RX_DATA <= (others => '0');
+			r_RX_DATA_LENGTH <= (others => '0');
+			r_RX_CLR <= '0';
+			o_RX_WR_EN <= '0';
+			
+		elsif rising_edge(i_CLK) then
+		
+			o_RX_WR_EN <= '0';
+			r_RX_CLR <= i_RX_RDY;
+			
+			if i_RX_RDY = '1' and r_RX_CLR = '0' and i_RX_FULL = '0' then
+			
+				o_RX_DATA <= i_RX_DATA;
+				o_RX_WR_EN  <= not i_RX_FULL;
+				
+				case r_RX_PR_ST is
+					when IDLE =>
+						if i_RX_DATA = x"7E" then
+							r_RX_PR_ST <= SFD;
+						end if;
+					when SFD =>
+						r_RX_PR_ST <= DEST_MAC;
+					when DEST_MAC =>
+						r_RX_PR_ST <= SRC_MAC;
+					when SRC_MAC =>
+						r_RX_DATA_LENGTH(15 downto 8) <= unsigned(i_RX_DATA);
+						r_RX_PR_ST <= DATA_LENGTH;
+					when DATA_LENGTH =>
+						if v_COUNTER = x"0000" then
+							r_RX_DATA_LENGTH(7 downto 0) <= unsigned(i_RX_DATA);
+							v_COUNTER := v_COUNTER + 1;
+						else
+							v_COUNTER := (others => '0');
+							if r_RX_DATA_LENGTH = x"0000" then
+								r_RX_PR_ST <= CRC;
+							else
+								r_RX_PR_ST <= DATA;
+							end if;
+						end if;
+						
+					when DATA => 
+						v_COUNTER := v_COUNTER + 1;
+						if v_COUNTER = r_RX_DATA_LENGTH then
+							v_COUNTER := (others => '0');
+							r_RX_PR_ST   <= CRC;						
+						end if;
+						
+					when CRC =>
+						v_COUNTER := v_COUNTER + 1;
+						
+				end case;
+				
+			end if;
+			
+			if r_RX_PR_ST = CRC and v_COUNTER = x"0004" then
+				v_COUNTER := (others => '0');
+				if i_RX_FULL = '0' and i_RX_DATA = x"7E" then
+					r_RX_PR_ST <= SFD;
+				else 
+					r_RX_PR_ST <= IDLE;
+				end if;
+			end if;
+			
+		end if;
+
+	end process RX_FRAME;
+
+end RTL;

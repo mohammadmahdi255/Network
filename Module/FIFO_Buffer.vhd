@@ -51,7 +51,7 @@ begin
 		if i_EN = '0' then
 			r_SIZE <= 0;
 			r_Buffer <= (others => (others => '0'));
-		elsif rising_edge(i_CLK) then
+		elsif falling_edge(i_CLK) then
 		
 			if i_RD_EN = '1' and w_EMPTY = '0' then
 				
