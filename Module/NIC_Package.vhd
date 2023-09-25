@@ -24,7 +24,7 @@ package NIC_Package is
 		
 	end record;
 
-	function to_int(b : std_logic_vector) return integer;
+	function to_slv(i : integer; l: integer) return std_logic_vector;
 	
 	function to_byte_vector(data : std_logic_vector) return t_BYTE_VECTOR;
 	function to_std_logic_vector(input_vector : t_BYTE_VECTOR) return std_logic_vector;
@@ -36,9 +36,9 @@ end NIC_Package;
 
 package body NIC_Package is
 
-	function to_int(b : std_logic_vector) return integer is
+	function to_slv(i : integer; l: integer) return std_logic_vector is
 	begin
-		return to_integer(unsigned(b));
+		return std_logic_vector(to_unsigned(i, l));
 	end function;
 	
 	function to_byte_vector(data : std_logic_vector) return t_BYTE_VECTOR is
