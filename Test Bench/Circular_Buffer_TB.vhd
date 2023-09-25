@@ -77,7 +77,7 @@ BEGIN
 	  end loop;
 	  
 	  i_WR_EN <= '0';
-      wait for 100 ns;
+      wait for 500 ns;
 	  i_RD_EN <= '1';
 
       wait for i_CLK_period;

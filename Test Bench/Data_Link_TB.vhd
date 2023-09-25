@@ -12,35 +12,28 @@ ARCHITECTURE behavior OF Data_Link_TB IS
  
     COMPONENT Data_Link
     PORT(
-      i_EN      : in  std_logic;
+		i_EN      : in  std_logic;
 		i_CLK     : in  std_logic;
-		
-		-- Data Link Config
-		i_MAC_ADDR : in std_logic_vector (7 downto 0);
 		
 		-- Data Link Control Pins
 		i_PKT_SEND : in std_logic;
-		
+
 		-- Data Link Status Pins
-		b_TX_RDY  : buffer  std_logic;
 		o_RX_RECV : out  std_logic;
-		o_ERR_SIG : out  std_logic;
-		
+
 		-- FIFO TX buffer pins
-		i_TX_EMPTY   : in  std_logic;
 		i_TX_DATA    : in  std_logic_vector (7 downto 0);
 		o_TX_RD_EN   : out std_logic;
-		
+
 		-- FIFO RX buffer pins
-		i_RX_FULL    : in  std_logic;
 		o_RX_DATA    : out std_logic_vector (7 downto 0);
 		o_RX_WR_EN   : out std_logic;
-		
+
 		-- UART TX Pins
 		o_TX_STR  : out std_logic;
 		i_TX_RDY  : in  std_logic;
 		o_TX_DATA : out std_logic_vector (7 downto 0);
-		
+
 		-- UART RX Pins
 		o_RX_CLR  : out std_logic;
 		i_RX_RDY  : in  std_logic;
@@ -53,10 +46,7 @@ ARCHITECTURE behavior OF Data_Link_TB IS
    signal i_EN : std_logic := '0';
    signal i_CLK : std_logic := '0';
    signal i_PKT_SEND : std_logic := '0';
-   signal i_TX_EMPTY : std_logic := '0';
    signal i_TX_DATA : std_logic_vector(7 downto 0) := (others => '0');
-   signal i_MAC_ADDR : std_logic_vector(7 downto 0) := (others => '0');
-   signal i_RX_FULL : std_logic := '0';
    signal i_TX_RDY : std_logic := '0';
    signal i_RX_RDY : std_logic := '0';
    signal i_RX_DATA : std_logic_vector(7 downto 0) := (others => '0');
@@ -72,7 +62,6 @@ ARCHITECTURE behavior OF Data_Link_TB IS
    signal b_TX_RDY : std_logic;
    signal o_ERR_SIG : std_logic;
    
-   
    signal i_U2X : std_logic;
    signal i_UCD : std_logic_vector(15 downto 0);
    signal o_TX_SDO : std_logic;
@@ -85,31 +74,26 @@ BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: Data_Link PORT MAP (
-          i_EN => i_EN,
-          i_CLK => i_CLK,
-			 
-			 i_MAC_ADDR => i_MAC_ADDR,
-			 i_PKT_SEND => i_PKT_SEND,
-			 
-			 b_TX_RDY => b_TX_RDY,
-			 o_RX_RECV => o_RX_RECV,
-			 o_ERR_SIG => o_ERR_SIG,
-		  
-          i_TX_EMPTY => i_TX_EMPTY,
-          i_TX_DATA => i_TX_DATA,
-          o_TX_RD_EN => o_TX_RD_EN,
-		  
-          i_RX_FULL => i_RX_FULL,
-          o_RX_DATA => o_RX_DATA,
-          o_RX_WR_EN => o_RX_WR_EN,
-		  
-          o_TX_STR => o_TX_STR,
-          i_TX_RDY => i_TX_RDY,
-          o_TX_DATA => o_TX_DATA,
-		  
-          o_RX_CLR => o_RX_CLR,
-          i_RX_RDY => i_RX_RDY,
-          i_RX_DATA => i_RX_DATA
+		i_EN => i_EN,
+		i_CLK => i_CLK,
+
+		i_PKT_SEND => i_PKT_SEND,
+
+		o_RX_RECV => o_RX_RECV,
+
+		i_TX_DATA => i_TX_DATA,
+		o_TX_RD_EN => o_TX_RD_EN,
+
+		o_RX_DATA => o_RX_DATA,
+		o_RX_WR_EN => o_RX_WR_EN,
+
+		o_TX_STR => o_TX_STR,
+		i_TX_RDY => i_TX_RDY,
+		o_TX_DATA => o_TX_DATA,
+
+		o_RX_CLR => o_RX_CLR,
+		i_RX_RDY => i_RX_RDY,
+		i_RX_DATA => i_RX_DATA
         );
 	
 	UART_uut : entity Work.UART 
@@ -150,55 +134,47 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-	  i_EN <= '1';
-	  i_RX_FULL <= '0';
-	  i_TX_EMPTY <= '0';
-	  i_U2X <= '1';
-	  i_UCD <= x"0000";
-	  i_MAC_ADDR <= x"4F";
-	  i_TX_DATA <= x"7E";
-     wait for 100 ns;
-	  
-	  -- SFD
-	  i_PKT_SEND <= '1';
-	  wait until i_TX_RDY = '1';
-	  
-	  -- DEST_MAC
-	  i_TX_DATA <= x"F5";
-	  wait until i_TX_RDY = '1';
-	  
-	  -- SRC_MAC
-	  wait until i_TX_RDY = '1';
-	  
-	  -- DATA_LENGTH
-	  i_TX_DATA <= x"00";
-	  wait until i_TX_RDY = '1';
-	  i_TX_DATA <= x"03";
-	  wait until i_TX_RDY = '1';
-	  
-	  -- DATA
-	  i_TX_DATA <= x"E8";
-	  wait until i_TX_RDY = '1';
-	  i_TX_DATA <= x"12";
-	  wait until i_TX_RDY = '1';
-	  i_TX_DATA <= x"9C";
-	  
-	  -- PADDING
-	  wait until i_TX_RDY = '1';
-	  wait until i_TX_RDY = '1';
-	  wait until i_TX_RDY = '1';
-	  wait until i_TX_RDY = '1';
-	  
-	  -- CRC
-	  wait until i_TX_RDY = '1';
-	  wait until i_TX_RDY = '1';
-	  wait until i_TX_RDY = '1';
-	  wait until i_TX_RDY = '1';
-	  i_TX_DATA <= x"00";
+		i_EN <= '1';
+		i_U2X <= '1';
+		i_UCD <= x"0000";
+		i_TX_DATA <= x"7E";
+		wait for 100 ns;
 
-     wait for i_CLK_period*10;
+		-- SFD
+		i_PKT_SEND <= '1';
+		wait until i_TX_RDY = '1';
 
-      -- insert stimulus here 
+		-- SRC_MAC
+		i_TX_DATA <= x"8E";
+		wait until i_TX_RDY = '1';
+
+		-- DEST_MAC
+		i_TX_DATA <= x"F5";
+		wait until i_TX_RDY = '1';
+
+		-- DATA_LENGTH
+		i_TX_DATA <= x"00";
+		wait until i_TX_RDY = '1';
+		i_TX_DATA <= x"03";
+		wait until i_TX_RDY = '1';
+
+		-- DATA
+		i_TX_DATA <= x"E8";
+		wait until i_TX_RDY = '1';
+		i_TX_DATA <= x"12";
+		wait until i_TX_RDY = '1';
+		i_TX_DATA <= x"9C";
+
+		-- CRC
+		wait until i_TX_RDY = '1';
+		wait until i_TX_RDY = '1';
+		wait until i_TX_RDY = '1';
+		wait until i_TX_RDY = '1';
+		i_TX_DATA <= x"00";
+
+		wait for i_CLK_period*10;
+
+		-- insert stimulus here 
 
       wait;
    end process;

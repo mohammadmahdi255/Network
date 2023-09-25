@@ -8,7 +8,7 @@ entity FIFO_Buffer is
 	generic
 	(
 		DATA_WIDTH : integer := 8;
-		ADDR_WIDTH : integer := 4
+		ADDR_WIDTH : integer := 6
 	);
 	port
 	(
