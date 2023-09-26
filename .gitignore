@@ -1,10 +1,16 @@
+# Ignore all files and folders
 *
 
-
+# Include .gitignore
 !.gitignore
 
-!Module
+# Include .x files
+!*.xise
+
+# Include the "Module" folder and its contents
+!Module/
 !Module/*.vhd
 
-!Test/ Bench
-!Test/ Bench/*.vhd
+# Include the "Test Bench" folder and its contents
+!Test Bench/
+!Test Bench/*.vhd
