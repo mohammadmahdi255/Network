@@ -38,8 +38,18 @@ architecture RTL of Data_Link_Manager is
 	-- Connection Controler Signals
 	signal r_CONC_ST : t_CONC_ST := IDLE;
 	
-	signal r_TX_ST   : t_DL_ST   := IDLE;
-	signal r_TX_TRF  : std_logic := '0';
+	-- TX Transmiter signals
+	signal r_TX_ST     : t_DL_ST   := IDLE;
+	signal r_TX_TRF    : std_logic := '0';
+	signal r_TX_BUSY   : std_logic := '0';
+	signal r_TX_PKT    : t_PACKET;
+	signal r_TX_BUFFER : t_QUEUE;
+	
+	-- RX Receiver signals
+	signal r_RX_ST     : t_DL_ST   := IDLE;
+	signal r_RX_VALID  : std_logic := '0';
+	signal r_RX_PKT    : t_PACKET;
+	signal r_RX_BUFFER : t_QUEUE;
 
 begin
 
@@ -69,112 +79,173 @@ begin
 		i_RX_SDI    => i_RX_SDI
 		);
 		
---	Connection_Control : process(i_EN, i_CLK)
---	begin
---		
---		if i_EN = '0' then
---			r_CONC_ST <= IDLE;
---			
---		elsif rising_edge(i_CLK) then
---		
---			case r_CONC_ST is
---			
---				when IDLE =>
---					if i_RX_SDI = '1' then
---						r_TX_UART_STR <= '1';
---						r_TX_UART_DATA <= SFD;
---					end if;
---					
---					if r_TX_UART_RDY = '0' then
---						r_TX_UART_STR <= '0';
---						r_CONC_ST <= HANDSHAKE;
---					end if;
---					
---				when HANDSHAKE =>
---					if r_RX_UART_RDY = '1' then
---						r_RX_UART_CLR <= '1';
---						if r_RX_UART_DATA = x"7E" then
---							r_CONC_ST <= i_ADDR;
---						end if;
---					end if;
---			
---			end case;
---			
---			if i_RX_SDI = '0' and r_RX_UART_IDLE = '1' then
---				r_CONC_ST <= IDLE;
---			end if;
---		
---		end if;
---	
---	end process;
+	TX_Queue : entity Circular_Buffer
+	generic map
+	(
+		DATA_WIDTH => 4;
+		ADDR_WIDTH => 3
+	);
+	port
+	(
+		i_EN    => i_EN,
+		i_CLK   => i_CLK,
+		i_PUSH  => r_TX_PUSH,
+		i_POP   => r_TX_POP,
+		o_FULL  => r_TX_FULL,
+		b_EMPTY => r_TX_EMPTY,
+
+		i_DATA  : in  t_BYTE_VECTOR (0 to DATA_WIDTH - 1);
+		o_DATA  : out t_BYTE_VECTOR (0 to DATA_WIDTH - 1)
+	);
+end Circular_Buffer;
+		
+	Control_Unit : process(i_EN, i_CLK)
+		variable v_TX_FRONT : integer range 0 to 7 := 0;
+		variable v_TX_REAR  : integer range 0 to 7 := 0;
+		variable v_TX_SIZE  : integer range 0 to 8 := 0;
+	begin
+		
+		if i_EN = '0' then
+			r_CONC_ST <= IDLE;
+			
+		elsif rising_edge(i_CLK) then
+			
+			if r_TX_BUSY = '1' then
+				r_TX_TRF <= '0';
+				
+			elsif to_int(v_TX_SIZE) /= 0 then
+				-- POP from TX Queue
+				r_TX_PKT <= r_TX_BUFFER.queue(v_TX_FRONT);
+				v_TX_FRONT <= v_TX_FRONT + 1;
+				v_TX_SIZE := v_TX_SIZE - 1;
+				r_TX_TRF <= '1';
+			end if;
+			
+			if to_int(v_TX_SIZE) /= 8 then
+				r_TX_BUFFER.queue(v_TX_FRONT + v_TX_SIZE) <= 
+				v_TX_SIZE := v_TX_SIZE + 1;
+			end if;
+			
+			
+			
+		end if;
+	
+	end process;
 	
 	TX_FRAME : process (i_EN, i_CLK)
-		variable v_INDEX : std_logic_vector(9 downto 0) := (others => '0');
+		variable v_NX_ST : t_DL_ST := IDLE;
 	begin
 
 		if i_EN = '0' then
 
-			v_INDEX := (others => '0');
-			r_TX_CPLT <= '0';
+			r_TX_BUSY <= '0';
 			r_TX_UART_STR <= '0';
+			r_TX_UART_DATA <= x"00";
+			v_NX_ST := IDLE;
 			r_TX_ST <= IDLE;
-			
-			-- TX CRC
-			r_TX_CRC_RST <= '0';
 
 		elsif rising_edge(i_CLK) then
 		
-			r_TX_CRC_EN <= '0';
-			if r_TX_UART_RDY = '0' then
-				r_TX_UART_STR <= '0';
+			if r_TX_UART_RDY = '0' or r_TX_UART_STR = '0' then
+				r_TX_ST <= v_NX_ST;
 			end if;
 
-			if r_TX_UART_RDY = '1' and r_TX_UART_STR = '0' then
-			
-				r_TX_UART_STR <= '1';
-
---				r_TX_CRC_RST <= '1';
---				r_TX_CRC_EN <= '1';
+			if r_TX_UART_RDY = '1' then
 
 				case r_TX_ST is
 
 					when IDLE =>
-						r_TX_UART_STR <= r_TX_TRF;
 						if r_TX_TRF = '1' then
+							r_TX_BUSY <= '1';
+							r_TX_UART_STR <= '1';
 							r_TX_UART_DATA <= c_SFD;
-							r_TX_ST <= SFD;
+							v_NX_ST := SFD;
 						end if;
 						
 					when SFD => 
-						r_TX_UART_DATA <= r_TX_DQ(to_int(v_INDEX(0)));
-						v_INDEX := v_INDEX + 1;
-						if v_INDEX = r_TX_INDEX then
-							v_INDEX := (others => '0');
-							r_TX_INDEX <= to_std_logic_vector(r_TX_DQ)(r_TX_INDEX'range);
-							r_TX_PR_ST <= PAYLOAD;
-						end if;
+						r_TX_UART_DATA <= r_TX_PKT.src_mac & r_TX_PKT.dest_mac;
+						v_NX_ST := ADDRESS;
 						
-					when PAYLOAD =>
-						r_TX_UART_DATA <= r_TX_DQ(to_int(v_INDEX(0)));
-						v_INDEX := v_INDEX + 1;
-						if v_INDEX = r_TX_INDEX then
-							v_INDEX := (others => '0');
-							r_TX_INDEX <= to_slv(4, r_TX_INDEX'length);
-							r_TX_PR_ST <= CRC;
-						end if;
+					when ADDRESS =>
+						r_TX_UART_DATA <= r_TX_PKT.p_type;
+						v_NX_ST := P_TYPE;
+						
+					when P_TYPE => 
+						r_TX_UART_DATA <= r_TX_PKT.data;
+						v_NX_ST := DATA;
+						
+					when DATA =>
+						r_TX_UART_DATA <= r_TX_PKT.crc;
+						v_NX_ST := CRC;
 						
 					when CRC =>
-						r_TX_CRC_EN <= '0';
-						r_TX_UART_DATA <= to_byte_vector(r_TX_CRC)(to_int(v_INDEX));
-						v_INDEX := v_INDEX + 1;
-						if v_INDEX = r_TX_INDEX then
-							v_INDEX := (others => '0');
-							r_TX_PR_ST <= IDLE;
-						end if;
+						r_TX_BUSY <= '0';
+						r_TX_UART_STR <= '0';
+						r_TX_UART_DATA <= x"00";
+						v_NX_ST := IDLE;
 
 				end case;
 
 			end if;
+			
+		end if;
+
+	end process;
+	
+	RX_FRAME : process (i_EN, i_CLK)
+		variable v_NX_ST : t_DL_ST := IDLE;
+	begin
+
+		if i_EN = '0' then
+
+			r_RX_VALID <= '0';
+			r_RX_UART_CLR <= '0';
+			v_NX_ST := IDLE;
+			r_RX_ST <= IDLE;
+
+		elsif rising_edge(i_CLK) then
+			
+			r_RX_UART_CLR <= r_RX_UART_RDY;
+
+			case r_TX_ST is
+
+				when IDLE =>
+					r_RX_VALID <= '0';
+					if r_RX_UART_IDLE = '0' then
+						r_RX_ST <= SFD;
+					end if;
+					
+				when SFD => 
+					if r_RX_UART_DATA = c_SFD then
+						v_NX_ST := ADDRESS;
+					else
+						v_NX_ST := IDLE;
+					end if;
+					
+				when ADDRESS =>
+					r_RX_PKT.src_mac <= r_RX_UART_DATA(7 downto 4);
+					r_RX_PKT.dest_mac <= r_RX_UART_DATA(3 downto 0);
+					v_NX_ST := ADDRESS;
+					
+				when P_TYPE =>
+					r_RX_PKT.p_type <= r_RX_UART_DATA;
+					v_NX_ST := P_TYPE;
+					
+				when DATA => 
+					r_RX_PKT.data <= r_RX_UART_DATA;
+					v_NX_ST := DATA;
+					
+				when CRC =>
+					r_RX_PKT.crc <= r_RX_UART_DATA;
+					v_NX_ST := IDLE;
+					r_RX_VALID <= r_RX_UART_RDY;
+
+			end case;
+			
+			if r_RX_UART_RDY = '1' then
+				r_RX_ST <= v_NX_ST;
+			end if;
+			
 		end if;
 
 	end process;
