@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.std_logic_unsigned.all;
 
-entity Data_Link is
+entity Data_Linkk is
 	port
 	(
 		i_EN      : in  std_logic;
@@ -36,7 +36,7 @@ entity Data_Link is
 	);
 end Data_Link;
 
-architecture RTL of Data_Link is
+architecture RTL of Data_Linkk is
 
 	type t_FSM is (
 		IDLE,
