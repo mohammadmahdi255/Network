@@ -7,20 +7,18 @@ use WORK.DATA_LINK_PACKAGE.all;
 use WORK.MEMORY_PACKAGE.all;
 
 entity Data_Link is
-	generic
-	(
-		g_U2X     : std_logic                     := '0';
-		g_UCD     : std_logic_vector(15 downto 0) := x"1111";
-		g_SRC_MAC : t_BYTE                        := x"FF"
-	);
 	port
 	(
 		i_EN      : in  std_logic;
 		i_CLK     : in  std_logic;
 
+		i_U2X     : in  std_logic;
+		i_UCD     : in  std_logic_vector(15 downto 0);
+		i_MAC     : in  t_BYTE;
+
 		i_BUFFER  : in  t_BUFFER;
 		o_PAYLOAD : out t_BYTE_VECTOR(0 to 15);
-		
+
 		i_TX_STR  : in  std_logic;
 		o_TX_BUSY : out std_logic;
 
@@ -37,7 +35,7 @@ architecture RTL of Data_Link is
 	-- Connection Controler Signals
 	signal r_DL_ST     : t_DL_ST := ARP_REQUEST;
 	signal r_DEST_MAC  : t_BYTE  := c_BROAD_CAST;
-	
+
 	-- CRC Signals
 	signal r_TX_CRC    : t_CRC;
 	signal r_RX_CRC    : t_CRC;
@@ -75,6 +73,7 @@ begin
 			r_DEST_MAC  <= c_BROAD_CAST;
 			r_TX_MF_STR <= '0';
 			o_TX_BUSY   <= '1';
+			o_RX_RDY    <= '0';
 			r_DL_ST     <= ARP_REQUEST;
 
 		elsif rising_edge(i_CLK) then
@@ -95,7 +94,7 @@ begin
 
 					when ARP_REQUEST =>
 						r_DEST_MAC  <= c_BROAD_CAST;
-						r_TX_BUFFER <= make_arp(c_ARP_REQUEST, g_SRC_MAC, c_BROAD_CAST);
+						r_TX_BUFFER <= make_arp(c_ARP_REQUEST, i_MAC, c_BROAD_CAST);
 						r_TX_MF_STR <= '1';
 						r_DL_ST     <= ARP_REPLAY;
 
@@ -118,11 +117,11 @@ begin
 					when c_ARP =>
 
 						if r_RX_BUFFER.payload(1) = c_ARP_REQUEST and r_TX_BF_RDY = '0' then
-							r_TX_BUFFER <= make_arp(c_ARP_REPLAY, g_SRC_MAC, r_RX_BUFFER.payload(2));
+							r_TX_BUFFER <= make_arp(c_ARP_REPLY, i_MAC, r_RX_BUFFER.payload(2));
 							r_TX_MF_STR <= '1';
 							r_RX_BF_CLR <= '1';
 
-						elsif r_RX_BUFFER.payload(1) = c_ARP_REPLAY and r_RX_BUFFER.payload(3) = g_SRC_MAC then
+						elsif r_RX_BUFFER.payload(1) = c_ARP_REPLY and r_RX_BUFFER.payload(3) = i_MAC then
 							r_DEST_MAC  <= r_RX_BUFFER.payload(2);
 							r_DL_ST     <= ESTABLISHED;
 							r_RX_BF_CLR <= '1';
@@ -192,7 +191,7 @@ begin
 					if r_TX_MF_STR = '1' then
 						r_TX_CRC.rst_n <= '1';
 						r_TX_CRC.en    <= '1';
-						r_TX_CRC.data  <= g_SRC_MAC;
+						r_TX_CRC.data  <= i_MAC;
 						r_TX_ST        <= SRC_MAC;
 					end if;
 
@@ -225,7 +224,7 @@ begin
 
 				when FRAME_RDY =>
 					if r_TX_RDY = '1' then
-						r_TX_FRAME.src_mac  <= g_SRC_MAC;
+						r_TX_FRAME.src_mac  <= i_MAC;
 						r_TX_FRAME.dest_mac <= r_DEST_MAC;
 						r_TX_FRAME.len      <= r_TX_BUFFER.len;
 						r_TX_FRAME.payload  <= r_TX_BUFFER.payload;
@@ -244,29 +243,26 @@ begin
 	end process;
 
 	Frame_Handler : entity work.Physical_Link
-		generic
-		map
-		(
-		g_U2X => g_U2X,
-		g_UCD => g_UCD
-		)
 		port
-		map
-		(
-		i_EN     => i_EN,
-		i_CLK    => i_CLK,
+	map
+	(
+	i_EN     => i_EN,
+	i_CLK    => i_CLK,
 
-		i_TX_STR => r_TX_STR,
-		o_TX_RDY => r_TX_RDY,
-		i_RX_CLR => r_RX_CLR,
-		o_RX_RDY => r_RX_RDY,
+	i_U2X    => i_U2X,
+	i_UCD    => i_UCD,
 
-		i_FRAME  => r_TX_FRAME,
-		b_FRAME  => r_RX_FRAME,
+	i_TX_STR => r_TX_STR,
+	o_TX_RDY => r_TX_RDY,
+	i_RX_CLR => r_RX_CLR,
+	o_RX_RDY => r_RX_RDY,
 
-		o_TX_SDO => o_TX_SDO,
-		i_RX_SDI => i_RX_SDI
-		);
+	i_FRAME  => r_TX_FRAME,
+	b_FRAME  => r_RX_FRAME,
+
+	o_TX_SDO => o_TX_SDO,
+	i_RX_SDI => i_RX_SDI
+	);
 
 	RX_Checking_Frame : process (i_EN, i_CLK)
 		variable v_INDEX : integer range 0 to 16 := 0;
@@ -291,7 +287,7 @@ begin
 
 					if r_RX_RDY = '1' and r_RX_BF_RDY = '0' then
 						r_RX_CLR <= '1';
-						if r_RX_FRAME.dest_mac = g_SRC_MAC or r_RX_FRAME.dest_mac = c_BROAD_CAST then
+						if r_RX_FRAME.dest_mac = i_MAC or r_RX_FRAME.dest_mac = c_BROAD_CAST then
 							r_RX_CRC.rst_n <= '1';
 							r_RX_CRC.en    <= '1';
 

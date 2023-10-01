@@ -5,7 +5,7 @@ entity Physical_Link is
 	generic
 	(
 		g_U2X     : std_logic                     := '1';
-		g_UCD     : std_logic_vector(15 downto 0) := x"1111";
+		g_UCD     : std_logic_vector(15 downto 0) := x"1111"
 	);
 	port
 	(

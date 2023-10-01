@@ -6,15 +6,13 @@ use WORK.MEMORY_PACKAGE.all;
 use WORK.PHYSICAL_LINK_PACKAGE.all;
 
 entity Physical_Link is
-	generic
-	(
-		g_U2X : std_logic                     := '0';
-		g_UCD : std_logic_vector(15 downto 0) := x"1111"
-	);
 	port
 	(
 		i_EN     : in     std_logic;
 		i_CLK    : in     std_logic;
+		
+		i_U2X    : in std_logic;
+		i_UCD    : in std_logic_vector(15 downto 0);
 
 		i_TX_STR : in     std_logic;
 		o_TX_RDY : out    std_logic;
@@ -50,8 +48,8 @@ begin
 			i_EN        => i_EN,
 			i_CLK       => i_CLK,
 
-			i_U2X       => g_U2X,
-			i_UCD       => g_UCD,
+			i_U2X       => i_U2X,
+			i_UCD       => i_UCD,
 			i_PARITY_EN => '0',
 
 			i_TX_STR    => r_UART.tx_str,

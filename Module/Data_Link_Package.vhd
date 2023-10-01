@@ -8,7 +8,7 @@ use WORK.MEMORY_PACKAGE.all;
 package Data_Link_Package is
 
 	type t_DL_ST is (ARP_REQUEST, ARP_REPLAY, ESTABLISHED);
-	
+
 	type t_FR_ST is (
 		IDLE,
 		SRC_MAC,
@@ -18,48 +18,40 @@ package Data_Link_Package is
 		FCS,
 		FRAME_RDY
 	);
-	
-	-- Address
+
+	-- Broad Cast
 	constant c_BROAD_CAST  : t_BYTE := x"FF";
 
-	-- Protocols
+	-- ARP Protocol
 	constant c_ARP         : t_BYTE := x"08";
-	constant c_CONNECTION  : t_BYTE := x"AC";
-	--	constant c_REQUEST 		: t_BYTE := x"53"; 
-	constant c_PRE_PREPARE : t_BYTE := x"96";
-	constant c_PREPARE     : t_BYTE := x"69";
-	constant c_COMMIT      : t_BYTE := x"2D";
-	--	constant c_REPLY 		: t_BYTE := x"81";
-
-	-- Operation
 	constant c_ARP_REQUEST : t_BYTE := x"01";
-	constant c_ARP_REPLAY  : t_BYTE := x"02";
+	constant c_ARP_REPLY   : t_BYTE := x"02";
 
 	-- Flags
 	constant c_ACK         : t_BYTE := x"80";
 	constant c_SYN         : t_BYTE := x"40";
 
 	type t_CRC is record
-		rst_n  : std_logic;
-	    en     : std_logic;
-		crc    : std_logic_vector(31 downto 0);
-		data   : t_BYTE;
+		rst_n : std_logic;
+		en    : std_logic;
+		crc   : std_logic_vector(31 downto 0);
+		data  : t_BYTE;
 	end record;
 
 	type t_BUFFER is record
-		len      : t_BYTE;
-		payload  : t_BYTE_VECTOR(0 to 15);
+		len     : t_BYTE;
+		payload : t_BYTE_VECTOR(0 to 15);
 	end record;
 
-	type t_TCP_PAYLOAD is record
-
-		protocol : t_BYTE;
-		seq_num  : t_BYTE;
-		ack_num  : t_BYTE;
-		flag     : t_BYTE;
-		data     : t_BYTE;
-
-	end record;
+	--	type t_TCP_PAYLOAD is record
+	--
+	--		protocol : t_BYTE;
+	--		seq_num  : t_BYTE;
+	--		ack_num  : t_BYTE;
+	--		flag     : t_BYTE;
+	--		data     : t_BYTE;
+	--
+	--	end record;
 
 	--	function ftbv(frame : t_FRAME) return t_BYTE_VECTOR;
 	--	function byte_vector_to_packet(data : t_BYTE_VECTOR) return t_PACKET;

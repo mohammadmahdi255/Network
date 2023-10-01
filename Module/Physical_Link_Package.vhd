@@ -38,7 +38,7 @@ package Physical_Link_Package is
 	-- | len          | Represents the length field of the    | 1 byte       |
 	-- |              | frame.                                |              |
 	-- +--------------+---------------------------------------+--------------+
-	-- | payload      | Represents the payload of the frame   | 16 bytes     |
+	-- | payload      | Represents the payload of the frame   | 4 bytes      |
 	-- |              | (t_BYTE_VECTOR with indices 0 to 15). | (variable)   |
 	-- +--------------+---------------------------------------+--------------+
 	-- | fcs          | Represents the Frame Check Sequence   | 4 bytes      |
