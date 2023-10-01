@@ -205,16 +205,14 @@ begin
 
 					when FCS =>
 						v_INDEX := v_INDEX + 1;
-
-						if v_INDEX = b_FRAME.fcs'length then
+						b_FRAME.fcs(v_INDEX) <= r_UART.rx_data;
+						if v_INDEX = b_FRAME.fcs'length - 1 then
 							o_RX_RDY <= '1';
 							v_INDEX := 0;
 							r_RX_ST <= IDLE;
-							if r_UART.rx_data = c_SFD then
-								r_RX_ST <= SFD;
-							end if;
-						else
-							b_FRAME.fcs(v_INDEX) <= r_UART.rx_data;
+--							if r_UART.rx_data = c_SFD then
+--								r_RX_ST <= SFD;
+--							end if;
 						end if;
 
 				end case;

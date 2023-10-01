@@ -1,127 +1,120 @@
+-- TestBench Template 
 
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use IEEE.NUMERIC_STD.all;
+use IEEE.STD_LOGIC_UNSIGNED.all;
+use WORK.PHYSICAL_LINK_PACKAGE.all;
+use WORK.DATA_LINK_PACKAGE.all;
+use WORK.MEMORY_PACKAGE.all;
 
 entity Data_Link_TB is
 end Data_Link_TB;
 
 architecture behavior of Data_Link_TB is
 
-	-- Component Declaration for the Unit Under Test (UUT)
-
+	-- Component Declaration
 	component Data_Link
+		generic
+		(
+			g_U2X     : std_logic                     := '0';
+			g_UCD     : std_logic_vector(15 downto 0) := x"1111";
+			g_SRC_MAC : t_BYTE                        := x"FF"
+		);
 		port
 		(
-			i_EN       : in  std_logic;
-			i_CLK      : in  std_logic;
+			i_EN      : in  std_logic;
+			i_CLK     : in  std_logic;
 
-			-- Data Link Control Pins
-			i_PKT_SEND : in  std_logic;
+			i_BUFFER  : in  t_BUFFER;
+			o_PAYLOAD : out t_BYTE_VECTOR(0 to 15);
 
-			-- Data Link Status Pins
-			o_RX_RECV  : out std_logic;
+			i_TX_STR  : in  std_logic;
+			o_TX_BUSY : out std_logic;
 
-			-- FIFO TX buffer pins
-			i_TX_DATA  : in  std_logic_vector (7 downto 0);
-			o_TX_RD_EN : out std_logic;
+			i_RX_CLR  : in  std_logic;
+			o_RX_RDY  : out std_logic;
 
-			-- FIFO RX buffer pins
-			o_RX_DATA  : out std_logic_vector (7 downto 0);
-			o_RX_WR_EN : out std_logic;
-
-			-- UART TX Pins
-			o_TX_STR   : out std_logic;
-			i_TX_RDY   : in  std_logic;
-			o_TX_DATA  : out std_logic_vector (7 downto 0);
-
-			-- UART RX Pins
-			o_RX_CLR   : out std_logic;
-			i_RX_RDY   : in  std_logic;
-			i_RX_DATA  : in  std_logic_vector (7 downto 0)
+			o_TX_SDO  : out std_logic;
+			i_RX_SDI  : in  std_logic
 		);
 	end component;
+	
+	constant c_U2X : std_logic := '1';
+	constant c_UCD : std_logic_vector(15 downto 0) := x"0000";
+	
+	signal i_EN      : std_logic_vector(1 downto 0) := "00";
+	signal i_CLK     : std_logic;
+	
+	type t_BUF_ARR is array(0 to 1) of t_BUFFER; 
+	type t_PAY_ARR is array(0 to 1) of t_BYTE_VECTOR(0 to 15); 
 
-	--Inputs
-	signal i_EN           : std_logic                    := '0';
-	signal i_CLK          : std_logic                    := '0';
-	signal i_PKT_SEND     : std_logic                    := '0';
-	signal i_TX_DATA      : std_logic_vector(7 downto 0) := (others => '0');
-	signal i_TX_RDY       : std_logic                    := '0';
-	signal i_RX_RDY       : std_logic                    := '0';
-	signal i_RX_DATA      : std_logic_vector(7 downto 0) := (others => '0');
+	signal i_BUFFER  : t_BUF_ARR;
+	signal o_PAYLOAD : t_PAY_ARR;
 
-	--Outputs
-	signal o_RX_RECV      : std_logic;
-	signal o_TX_RD_EN     : std_logic;
-	signal o_RX_DATA      : std_logic_vector(7 downto 0);
-	signal o_RX_WR_EN     : std_logic;
-	signal o_TX_STR       : std_logic;
-	signal o_TX_DATA      : std_logic_vector(7 downto 0);
-	signal o_RX_CLR       : std_logic;
-	signal b_TX_RDY       : std_logic;
-	signal o_ERR_SIG      : std_logic;
+	signal i_TX_STR  : std_logic_vector(1 downto 0) := "00";
+	signal o_TX_BUSY : std_logic_vector(1 downto 0) := "00";
 
-	signal i_U2X          : std_logic;
-	signal i_UCD          : std_logic_vector(15 downto 0);
-	signal o_TX_SDO       : std_logic;
-	signal i_RX_SDI       : std_logic;
+	signal i_RX_CLR  : std_logic_vector(1 downto 0) := "00";
+	signal o_RX_RDY  : std_logic_vector(1 downto 0) := "00";
+
+	signal o_TX_SDO  : std_logic;
+	signal i_RX_SDI  : std_logic;
 
 	-- Clock period definitions
 	constant i_CLK_period : time := 10 ns;
 
 begin
 
-	-- Instantiate the Unit Under Test (UUT)
-	uut : Data_Link port map
+	-- Component Instantiation
+	Ethernet_0 : Data_Link
+	generic map
 	(
-		i_EN       => i_EN,
-		i_CLK      => i_CLK,
-
-		i_PKT_SEND => i_PKT_SEND,
-
-		o_RX_RECV  => o_RX_RECV,
-
-		i_TX_DATA  => i_TX_DATA,
-		o_TX_RD_EN => o_TX_RD_EN,
-
-		o_RX_DATA  => o_RX_DATA,
-		o_RX_WR_EN => o_RX_WR_EN,
-
-		o_TX_STR   => o_TX_STR,
-		i_TX_RDY   => i_TX_RDY,
-		o_TX_DATA  => o_TX_DATA,
-
-		o_RX_CLR   => o_RX_CLR,
-		i_RX_RDY   => i_RX_RDY,
-		i_RX_DATA  => i_RX_DATA
+		g_U2X => c_U2X,
+		g_UCD => c_UCD,
+		g_SRC_MAC => x"3D"
+	)
+	port map
+	(
+		i_EN => i_EN(0),
+		i_CLK => i_CLK,
+		
+		i_BUFFER => i_BUFFER(0),
+		o_PAYLOAD => o_PAYLOAD(0),
+		
+		i_TX_STR => i_TX_STR(0),
+		o_TX_BUSY => o_TX_BUSY(0),
+		i_RX_CLR => i_RX_CLR(0),
+		o_RX_RDY => o_RX_RDY(0),
+		
+		o_TX_SDO => o_TX_SDO,
+		i_RX_SDI => i_RX_SDI
 	);
-
-	UART_uut : entity Work.UART
-		generic
-		map(WIDTH => 8)
-		port
-		map (
-		i_EN        => i_EN,
-		i_CLK       => i_CLK,
-
-		i_U2X       => i_U2X,
-		i_UCD       => i_UCD,
-		i_PARITY_EN => '0',
-
-		i_TX_STR    => o_TX_STR,
-		o_TX_RDY    => i_TX_RDY,
-		i_RX_CLR    => o_RX_CLR,
-		o_RX_RDY    => i_RX_RDY,
-		o_RX_DV     => open,
-
-		i_TX_DATA   => o_TX_DATA,
-		o_RX_DATA   => i_RX_DATA,
-
-		o_TX_SDO    => o_TX_SDO,
-		i_RX_SDI    => i_RX_SDI
-		);
-
+	
+	Ethernet_1 : Data_Link
+	generic map
+	(
+		g_U2X => c_U2X,
+		g_UCD => c_UCD,
+		g_SRC_MAC => x"F8"
+	)
+	port map
+	(
+		i_EN => i_EN(1),
+		i_CLK => i_CLK,
+		
+		i_BUFFER => i_BUFFER(1),
+		o_PAYLOAD => o_PAYLOAD(1),
+		
+		i_TX_STR => i_TX_STR(1),
+		o_TX_BUSY => o_TX_BUSY(1),
+		i_RX_CLR => i_RX_CLR(1),
+		o_RX_RDY => o_RX_RDY(1),
+		
+		o_TX_SDO => i_RX_SDI,
+		i_RX_SDI => o_TX_SDO
+	);
+	
 	-- Clock process definitions
 	i_CLK_process : process
 	begin
@@ -131,55 +124,35 @@ begin
 		wait for i_CLK_period/2;
 	end process;
 
-	i_RX_SDI <= o_TX_SDO;
 
-	-- Stimulus process
-	stim_proc : process
+	--  Test Bench Statements
+	tb : process
 	begin
-		-- hold reset state for 100 ns.
-		i_EN      <= '1';
-		i_U2X     <= '1';
-		i_UCD     <= x"0000";
-		i_TX_DATA <= x"7E";
+		
+		wait for 100 ns; -- wait until global set/reset completes
+		
+		i_EN <= "11";
+		
+		
+		wait until o_TX_BUSY = "00"; -- wait until ETHERNET ESTABlished
+		i_TX_STR(0) <= '1';
+		i_BUFFER(0) <= (
+			len => x"0A",
+			payload => (x"13", x"8F", x"AB", x"4C", x"C3", x"44", x"33", x"CE", x"FF", x"3F", others => x"00")
+		);
+		
+		i_TX_STR(1) <= '1';
+		i_BUFFER(1) <= (
+			len      => x"06",
+			payload  => (x"13", x"8F", x"AB", x"4C", x"C3", x"44", others => x"00")
+		);
+		-- Add user defined stimulus here
+		
 		wait for 100 ns;
+		i_TX_STR <= "00";
 
-		-- SFD
-		i_PKT_SEND <= '1';
-		wait until i_TX_RDY = '1';
-
-		-- SRC_MAC
-		i_TX_DATA <= x"8E";
-		wait until i_TX_RDY = '1';
-
-		-- DEST_MAC
-		i_TX_DATA <= x"F5";
-		wait until i_TX_RDY = '1';
-
-		-- DATA_LENGTH
-		i_TX_DATA <= x"00";
-		wait until i_TX_RDY = '1';
-		i_TX_DATA <= x"03";
-		wait until i_TX_RDY = '1';
-
-		-- DATA
-		i_TX_DATA <= x"E8";
-		wait until i_TX_RDY = '1';
-		i_TX_DATA <= x"12";
-		wait until i_TX_RDY = '1';
-		i_TX_DATA <= x"9C";
-
-		-- CRC
-		wait until i_TX_RDY = '1';
-		wait until i_TX_RDY = '1';
-		wait until i_TX_RDY = '1';
-		wait until i_TX_RDY = '1';
-		i_TX_DATA <= x"00";
-
-		wait for i_CLK_period * 10;
-
-		-- insert stimulus here 
-
-		wait;
-	end process;
+		wait;            -- will wait forever
+	end process tb;
+	--  End Test Bench 
 
 end;
