@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
-use WORK.MEMORY_PACKAGE.all;
+use WORK.STD_PACKAGE.all;
 
 package Physical_Link_Package is
 
@@ -17,7 +17,7 @@ package Physical_Link_Package is
 	);
 
 	-- Start Frame Delimiter
-	constant c_SFD         : t_BYTE := x"7E";
+	constant c_SFD : t_BYTE := x"7E";
 
 	------------------------------------------------------------------------------
 	-- Table: Frame Fields based on IEEE 802.3 Ethernet Frame
@@ -45,7 +45,7 @@ package Physical_Link_Package is
 	-- |              | (FCS) of the frame.                   |              |
 	-- +--------------+---------------------------------------+--------------+
 	------------------------------------------------------------------------------
-	
+
 	type t_FRAME is record
 
 		src_mac  : t_BYTE;
@@ -55,8 +55,7 @@ package Physical_Link_Package is
 		fcs      : t_BYTE_VECTOR(0 to 3);
 
 	end record;
-	
-	
+
 	------------------------------------------------------------------------------
 	-- Table: Field Description for t_UART Record
 	-- Description: This table provides a description of the individual fields within the t_UART record, along with their data types.
@@ -79,23 +78,22 @@ package Physical_Link_Package is
 	-- | rx_data  | Received Data                       | t_BYTE     |
 	-- +----------+-------------------------------------+------------+
 	------------------------------------------------------------------------------
-	
+
 	type t_UART is record
 
-		tx_str   : std_logic;
-		tx_rdy   : std_logic;
-		tx_data  : t_BYTE;
-		
-		rx_clr   : std_logic;
-		rx_rdy   : std_logic;
-		rx_dv    : std_logic;
-		rx_data  : t_BYTE;
+		tx_str  : std_logic;
+		tx_rdy  : std_logic;
+		tx_data : t_BYTE;
+
+		rx_clr  : std_logic;
+		rx_rdy  : std_logic;
+		rx_dv   : std_logic;
+		rx_data : t_BYTE;
 
 	end record;
-	
+
 end Physical_Link_Package;
 
 package body Physical_Link_Package is
-
 
 end Physical_Link_Package;

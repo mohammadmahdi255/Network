@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 use WORK.PHYSICAL_LINK_PACKAGE.all;
-use WORK.MEMORY_PACKAGE.all;
+use WORK.STD_PACKAGE.all;
 
 package Data_Link_Package is
 
@@ -34,8 +34,8 @@ package Data_Link_Package is
 	type t_CRC is record
 		rst_n : std_logic;
 		en    : std_logic;
-		crc   : std_logic_vector(31 downto 0);
 		data  : t_BYTE;
+		crc   : t_BYTE_VECTOR (0 to 3);
 	end record;
 
 	type t_BUFFER is record

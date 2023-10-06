@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/mnt/Data/Engineering Works/Hardware Design/VHDL/Network/Physical_Link_TB_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="memory_package" />
+            <top_module name="numeric_std" />
+            <top_module name="physical_link_package" />
+            <top_module name="physical_link_tb" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="uart_package" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/physical_link_tb/i_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_en</obj_property>
+      <obj_property name="ObjectShortName">i_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/i_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_clk</obj_property>
+      <obj_property name="ObjectShortName">i_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/i_tx_str" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_tx_str</obj_property>
+      <obj_property name="ObjectShortName">i_tx_str</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/i_rx_clr" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_rx_clr</obj_property>
+      <obj_property name="ObjectShortName">i_rx_clr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/uut/r_uart" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">r_uart</obj_property>
+      <obj_property name="ObjectShortName">r_uart</obj_property>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.tx_str" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.tx_str</obj_property>
+         <obj_property name="ObjectShortName">r_uart.tx_str</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.tx_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.tx_rdy</obj_property>
+         <obj_property name="ObjectShortName">r_uart.tx_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.tx_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.tx_data</obj_property>
+         <obj_property name="ObjectShortName">r_uart.tx_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.rx_clr" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.rx_clr</obj_property>
+         <obj_property name="ObjectShortName">r_uart.rx_clr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.rx_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.rx_rdy</obj_property>
+         <obj_property name="ObjectShortName">r_uart.rx_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.rx_idle" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.rx_idle</obj_property>
+         <obj_property name="ObjectShortName">r_uart.rx_idle</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.rx_dv" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">.rx_dv</obj_property>
+         <obj_property name="ObjectShortName">r_uart.rx_dv</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/uut/r_uart.rx_data" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.rx_data</obj_property>
+         <obj_property name="ObjectShortName">r_uart.rx_data</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/uut/r_uart.tx_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">.tx_data</obj_property>
+      <obj_property name="ObjectShortName">r_uart.tx_data</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/uut/r_tx_st" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">r_tx_st</obj_property>
+      <obj_property name="ObjectShortName">r_tx_st</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/i_frame" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i_frame</obj_property>
+      <obj_property name="ObjectShortName">i_frame</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/physical_link_tb/i_frame.src_mac" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.src_mac</obj_property>
+         <obj_property name="ObjectShortName">i_frame.src_mac</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/i_frame.dest_mac" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.dest_mac</obj_property>
+         <obj_property name="ObjectShortName">i_frame.dest_mac</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/i_frame.len" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.len</obj_property>
+         <obj_property name="ObjectShortName">i_frame.len</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/i_frame.payload" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.payload</obj_property>
+         <obj_property name="ObjectShortName">i_frame.payload</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/i_frame.fcs" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.fcs</obj_property>
+         <obj_property name="ObjectShortName">i_frame.fcs</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/o_tx_rdy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_tx_rdy</obj_property>
+      <obj_property name="ObjectShortName">o_tx_rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/o_rx_rdy" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_rx_rdy</obj_property>
+      <obj_property name="ObjectShortName">o_rx_rdy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/uut/r_uart.rx_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">.rx_data</obj_property>
+      <obj_property name="ObjectShortName">r_uart.rx_data</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/uut/r_rx_st" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">r_rx_st</obj_property>
+      <obj_property name="ObjectShortName">r_rx_st</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/b_frame" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">b_frame</obj_property>
+      <obj_property name="ObjectShortName">b_frame</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/physical_link_tb/b_frame.src_mac" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.src_mac</obj_property>
+         <obj_property name="ObjectShortName">b_frame.src_mac</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/b_frame.dest_mac" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.dest_mac</obj_property>
+         <obj_property name="ObjectShortName">b_frame.dest_mac</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/b_frame.len" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.len</obj_property>
+         <obj_property name="ObjectShortName">b_frame.len</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/b_frame.payload" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.payload</obj_property>
+         <obj_property name="ObjectShortName">b_frame.payload</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[2]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[3]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[4]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[4]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[4]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[5]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[5]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[5]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[6]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[6]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[6]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[7]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[7]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[7]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[8]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[8]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[8]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[9]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[9]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[9]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[10]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[10]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[10]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[11]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[11]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[11]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[12]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[12]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[12]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[13]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[13]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[13]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[14]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[14]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[14]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/physical_link_tb/b_frame.payload[15]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[15]</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload[15]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/physical_link_tb/b_frame.fcs" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">.fcs</obj_property>
+         <obj_property name="ObjectShortName">b_frame.fcs</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/i_rx_sdi" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_rx_sdi</obj_property>
+      <obj_property name="ObjectShortName">i_rx_sdi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/o_tx_sdo" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">o_tx_sdo</obj_property>
+      <obj_property name="ObjectShortName">o_tx_sdo</obj_property>
+   </wvobject>
+   <wvobject fp_name="/physical_link_tb/i_clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">i_clk_period</obj_property>
+      <obj_property name="ObjectShortName">i_clk_period</obj_property>
+   </wvobject>
+</wave_config>

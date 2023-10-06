@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
-use WORK.MEMORY_PACKAGE.all;
+use WORK.STD_PACKAGE.all;
 use WORK.PHYSICAL_LINK_PACKAGE.all;
 
 entity Physical_Link is
@@ -10,9 +10,9 @@ entity Physical_Link is
 	(
 		i_EN     : in     std_logic;
 		i_CLK    : in     std_logic;
-		
-		i_U2X    : in std_logic;
-		i_UCD    : in std_logic_vector(15 downto 0);
+
+		i_U2X    : in     std_logic;
+		i_UCD    : in     std_logic_vector(15 downto 0);
 
 		i_TX_STR : in     std_logic;
 		o_TX_RDY : out    std_logic;
@@ -165,7 +165,8 @@ begin
 			r_UART.rx_clr <= r_UART.rx_rdy;
 
 			if i_RX_CLR = '1' then
-				o_RX_RDY <= '0';
+				b_FRAME.payload <= (others => x"00");
+				o_RX_RDY        <= '0';
 			end if;
 
 			if (r_UART.rx_rdy or r_UART.rx_dv) = '1' and r_UART.rx_clr = '0' then
@@ -178,7 +179,7 @@ begin
 						end if;
 
 					when SFD =>
-						o_RX_RDY <= '0';
+						o_RX_RDY        <= '0';
 						b_FRAME.src_mac <= r_UART.rx_data;
 						r_RX_ST         <= SRC_MAC;
 
@@ -208,9 +209,9 @@ begin
 							o_RX_RDY <= '1';
 							v_INDEX := 0;
 							r_RX_ST <= IDLE;
---							if r_UART.rx_data = c_SFD then
---								r_RX_ST <= SFD;
---							end if;
+							--							if r_UART.rx_data = c_SFD then
+							--								r_RX_ST <= SFD;
+							--							end if;
 						end if;
 
 				end case;

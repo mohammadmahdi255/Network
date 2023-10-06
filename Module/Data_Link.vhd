@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 use WORK.PHYSICAL_LINK_PACKAGE.all;
 use WORK.DATA_LINK_PACKAGE.all;
-use WORK.MEMORY_PACKAGE.all;
+use WORK.STD_PACKAGE.all;
 
 entity Data_Link is
 	port
@@ -89,7 +89,8 @@ begin
 			end if;
 
 			if r_TX_BF_RDY = '0' then
-
+				o_TX_BUSY   <= '0';
+				
 				case r_DL_ST is
 
 					when ARP_REQUEST =>
@@ -107,7 +108,9 @@ begin
 						end if;
 
 				end case;
-
+				
+			else
+				o_TX_BUSY   <= '1';
 			end if;
 
 			if r_RX_BF_RDY = '1' then
@@ -150,17 +153,7 @@ begin
 
 	end process;
 
-	TX_CRC : entity Work.CRC
-		generic
-		map(
-		g_DATA_WIDTH => 1,
-		g_CRC_WIDTH  => 4,
-		g_POLY       => x"04C11DB7",
-		g_INIT       => x"FFFFFFFF",
-		g_XOROUT     => x"FFFFFFFF",
-		g_REFIN      => '0',
-		g_REFOUT     => '0'
-		)
+	TX_CRC : entity Work.IEEE8023_CRC32
 		port map
 		(
 			i_RST_N => r_TX_CRC.rst_n,
@@ -228,7 +221,7 @@ begin
 						r_TX_FRAME.dest_mac <= r_DEST_MAC;
 						r_TX_FRAME.len      <= r_TX_BUFFER.len;
 						r_TX_FRAME.payload  <= r_TX_BUFFER.payload;
-						r_TX_FRAME.fcs      <= to_byte_vector(r_TX_CRC.crc);
+						r_TX_FRAME.fcs      <= r_TX_CRC.crc;
 
 						r_TX_STR            <= '1';
 						r_TX_CRC.rst_n      <= '0';
@@ -242,7 +235,7 @@ begin
 
 	end process;
 
-	Frame_Handler : entity work.Physical_Link
+	Physical_Layer : entity work.Physical_Link
 		port
 	map
 	(
@@ -323,7 +316,7 @@ begin
 						r_RX_CRC.en    <= '0';
 						v_INDEX := 0;
 						r_RX_ST <= IDLE;
-						if r_RX_CRC.crc = x"00000000" then
+						if r_RX_CRC.crc = (x"00", x"00", x"00", x"00") then
 							r_RX_BF_RDY <= '1';
 							r_RX_ST     <= FRAME_RDY;
 						end if;
@@ -343,17 +336,7 @@ begin
 
 	end process;
 
-	RX_CRC : entity Work.CRC
-		generic
-		map(
-		g_DATA_WIDTH => 1,
-		g_CRC_WIDTH  => 4,
-		g_POLY       => x"04C11DB7",
-		g_INIT       => x"FFFFFFFF",
-		g_XOROUT     => x"FFFFFFFF",
-		g_REFIN      => '0',
-		g_REFOUT     => '0'
-		)
+	RX_CRC : entity Work.IEEE8023_CRC32
 		port
 		map
 		(

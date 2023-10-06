@@ -6,7 +6,7 @@ use IEEE.NUMERIC_STD.all;
 use IEEE.STD_LOGIC_UNSIGNED.all;
 use WORK.PHYSICAL_LINK_PACKAGE.all;
 use WORK.DATA_LINK_PACKAGE.all;
-use WORK.MEMORY_PACKAGE.all;
+use WORK.STD_PACKAGE.all;
 
 entity Data_Link_TB is
 end Data_Link_TB;

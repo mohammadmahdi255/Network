@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/mnt/Data/Engineering Works/Hardware Design/VHDL/Network/Data_Link_TB_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="crc_package" />
+            <top_module name="data_link_package" />
+            <top_module name="data_link_tb" />
+            <top_module name="memory_package" />
+            <top_module name="numeric_std" />
+            <top_module name="physical_link_package" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="uart_package" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/data_link_tb/i_en" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i_en[1:0]</obj_property>
+      <obj_property name="ObjectShortName">i_en[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/i_clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_clk</obj_property>
+      <obj_property name="ObjectShortName">i_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/i_buffer" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i_buffer[0:1]</obj_property>
+      <obj_property name="ObjectShortName">i_buffer[0:1]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/data_link_tb/i_buffer[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">i_buffer[0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/i_buffer[0].len" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.len</obj_property>
+            <obj_property name="ObjectShortName">i_buffer[0].len</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/i_buffer[0].payload" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.payload</obj_property>
+            <obj_property name="ObjectShortName">i_buffer[0].payload</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[1]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[2]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[3]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[3]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[3]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[4]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[4]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[4]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[5]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[5]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[5]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[6]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[6]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[6]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[7]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[7]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[7]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[8]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[8]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[8]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[9]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[9]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[9]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[10]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[10]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[10]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[11]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[11]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[11]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[12]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[12]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[12]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[13]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[13]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[13]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[14]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[14]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[14]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[0].payload[15]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[15]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[0].payload[15]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/i_buffer[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">i_buffer[1]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/i_buffer[1].len" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.len</obj_property>
+            <obj_property name="ObjectShortName">i_buffer[1].len</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/i_buffer[1].payload" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.payload</obj_property>
+            <obj_property name="ObjectShortName">i_buffer[1].payload</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[1]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[2]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[3]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[3]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[3]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[4]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[4]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[4]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[5]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[5]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[5]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[6]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[6]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[6]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[7]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[7]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[7]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[8]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[8]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[8]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[9]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[9]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[9]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[10]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[10]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[10]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[11]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[11]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[11]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[12]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[12]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[12]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[13]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[13]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[13]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[14]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[14]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[14]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/i_buffer[1].payload[15]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[15]</obj_property>
+               <obj_property name="ObjectShortName">i_buffer[1].payload[15]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/o_payload" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_payload[0:1]</obj_property>
+      <obj_property name="ObjectShortName">o_payload[0:1]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/data_link_tb/o_payload[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">o_payload[0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/o_payload[0][0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][2]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][3]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][4]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[4]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][4]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][5]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[5]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][5]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][6]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[6]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][6]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][7]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[7]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][7]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][8]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[8]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][8]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][9]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[9]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][9]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][10]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[10]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][10]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][11]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[11]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][11]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][12]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[12]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][12]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][13]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[13]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][13]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][14]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[14]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][14]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[0][15]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[15]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[0][15]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/o_payload[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">o_payload[1]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/o_payload[1][0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][2]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][3]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][4]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[4]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][4]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][5]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[5]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][5]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][6]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[6]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][6]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][7]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[7]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][7]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][8]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[8]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][8]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][9]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[9]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][9]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][10]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[10]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][10]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][11]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[11]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][11]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][12]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[12]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][12]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][13]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[13]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][13]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][14]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[14]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][14]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/o_payload[1][15]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[15]</obj_property>
+            <obj_property name="ObjectShortName">o_payload[1][15]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/o_tx_busy" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_tx_busy[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_tx_busy[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/i_rx_clr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">i_rx_clr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">i_rx_clr[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/o_rx_rdy" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">o_rx_rdy[1:0]</obj_property>
+      <obj_property name="ObjectShortName">o_rx_rdy[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/Ethernet_0/i_tx_str" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_tx_str</obj_property>
+      <obj_property name="ObjectShortName">i_tx_str</obj_property>
+   </wvobject>
+   <wvobject fp_name="/data_link_tb/Ethernet_1/i_tx_str" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">i_tx_str</obj_property>
+      <obj_property name="ObjectShortName">i_tx_str</obj_property>
+   </wvobject>
+   <wvobject fp_name="group16" type="group">
+      <obj_property name="label">Ethernet 0</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_dest_mac" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_dest_mac[7:0]</obj_property>
+         <obj_property name="ObjectShortName">r_dest_mac[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_dl_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_dl_st</obj_property>
+         <obj_property name="ObjectShortName">r_dl_st</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_tx_crc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_tx_crc</obj_property>
+         <obj_property name="ObjectShortName">r_tx_crc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_tx_crc.rst_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.rst_n</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.rst_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_tx_crc.en" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.en</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.en</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_tx_crc.crc" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.crc</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.crc</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_tx_crc.data" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.data</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.data</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_dl_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_dl_st</obj_property>
+         <obj_property name="ObjectShortName">r_dl_st</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/r_tx_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_tx_st</obj_property>
+         <obj_property name="ObjectShortName">r_tx_st</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">i_frame</obj_property>
+         <obj_property name="ObjectShortName">i_frame</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.src_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.src_mac</obj_property>
+            <obj_property name="ObjectShortName">i_frame.src_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.dest_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.dest_mac</obj_property>
+            <obj_property name="ObjectShortName">i_frame.dest_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.len" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.len</obj_property>
+            <obj_property name="ObjectShortName">i_frame.len</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.payload" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.payload</obj_property>
+            <obj_property name="ObjectShortName">i_frame.payload</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.fcs" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.fcs</obj_property>
+            <obj_property name="ObjectShortName">i_frame.fcs</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.fcs[0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">i_frame.fcs[0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.fcs[1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">i_frame.fcs[1]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.fcs[2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">i_frame.fcs[2]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/i_frame.fcs[3]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[3]</obj_property>
+               <obj_property name="ObjectShortName">i_frame.fcs[3]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/b_frame" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">b_frame</obj_property>
+         <obj_property name="ObjectShortName">b_frame</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/b_frame.src_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.src_mac</obj_property>
+            <obj_property name="ObjectShortName">b_frame.src_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/b_frame.dest_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.dest_mac</obj_property>
+            <obj_property name="ObjectShortName">b_frame.dest_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/b_frame.len" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.len</obj_property>
+            <obj_property name="ObjectShortName">b_frame.len</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/b_frame.payload" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.payload</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/b_frame.fcs" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.fcs</obj_property>
+            <obj_property name="ObjectShortName">b_frame.fcs</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/r_uart" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_uart</obj_property>
+         <obj_property name="ObjectShortName">r_uart</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/r_rx_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rx_st</obj_property>
+         <obj_property name="ObjectShortName">r_rx_st</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/Frame_Handler/o_rx_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">o_rx_rdy</obj_property>
+         <obj_property name="ObjectShortName">o_rx_rdy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rx_buffer</obj_property>
+         <obj_property name="ObjectShortName">r_rx_buffer</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.src_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.src_mac</obj_property>
+            <obj_property name="ObjectShortName">r_rx_buffer.src_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.dest_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.dest_mac</obj_property>
+            <obj_property name="ObjectShortName">r_rx_buffer.dest_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.len" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.len</obj_property>
+            <obj_property name="ObjectShortName">r_rx_buffer.len</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.payload</obj_property>
+            <obj_property name="ObjectShortName">r_rx_buffer.payload</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[1]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[2]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[3]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[3]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[3]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[4]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[4]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[4]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[5]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[5]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[5]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[6]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[6]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[6]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[7]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[7]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[7]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[8]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[8]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[8]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[9]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[9]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[9]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[10]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[10]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[10]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[11]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[11]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[11]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[12]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[12]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[12]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[13]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[13]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[13]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[14]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[14]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[14]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.payload[15]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[15]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.payload[15]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.fcs" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.fcs</obj_property>
+            <obj_property name="ObjectShortName">r_rx_buffer.fcs</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.fcs[0]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[0]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.fcs[0]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.fcs[1]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[1]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.fcs[1]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.fcs[2]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[2]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.fcs[2]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+            <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_buffer.fcs[3]" type="array" db_ref_id="1">
+               <obj_property name="ElementShortName">[3]</obj_property>
+               <obj_property name="ObjectShortName">r_rx_buffer.fcs[3]</obj_property>
+               <obj_property name="Radix">HEXRADIX</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_crc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rx_crc</obj_property>
+         <obj_property name="ObjectShortName">r_rx_crc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_crc.rst_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.rst_n</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.rst_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_crc.en" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.en</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.en</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_crc.crc" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.crc</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.crc</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_crc.data" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.data</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.data</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rx_st</obj_property>
+         <obj_property name="ObjectShortName">r_rx_st</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_0/r_rx_bf_rdy" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rx_bf_rdy</obj_property>
+         <obj_property name="ObjectShortName">r_rx_bf_rdy</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group22" type="group">
+      <obj_property name="label">Ethernet 1</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/r_dest_mac" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_dest_mac[7:0]</obj_property>
+         <obj_property name="ObjectShortName">r_dest_mac[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/r_tx_crc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_tx_crc</obj_property>
+         <obj_property name="ObjectShortName">r_tx_crc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_tx_crc.rst_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.rst_n</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.rst_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_tx_crc.en" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.en</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.en</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_tx_crc.crc" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.crc</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.crc</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_tx_crc.data" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.data</obj_property>
+            <obj_property name="ObjectShortName">r_tx_crc.data</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/r_rx_crc" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rx_crc</obj_property>
+         <obj_property name="ObjectShortName">r_rx_crc</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_rx_crc.rst_n" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.rst_n</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.rst_n</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_rx_crc.en" type="logic" db_ref_id="1">
+            <obj_property name="ElementShortName">.en</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.en</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_rx_crc.crc" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.crc</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.crc</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/r_rx_crc.data" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.data</obj_property>
+            <obj_property name="ObjectShortName">r_rx_crc.data</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/r_dl_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_dl_st</obj_property>
+         <obj_property name="ObjectShortName">r_dl_st</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/r_tx_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_tx_st</obj_property>
+         <obj_property name="ObjectShortName">r_tx_st</obj_property>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/i_frame" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">i_frame</obj_property>
+         <obj_property name="ObjectShortName">i_frame</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/i_frame.src_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.src_mac</obj_property>
+            <obj_property name="ObjectShortName">i_frame.src_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/i_frame.dest_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.dest_mac</obj_property>
+            <obj_property name="ObjectShortName">i_frame.dest_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/i_frame.len" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.len</obj_property>
+            <obj_property name="ObjectShortName">i_frame.len</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/i_frame.payload" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.payload</obj_property>
+            <obj_property name="ObjectShortName">i_frame.payload</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/i_frame.fcs" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.fcs</obj_property>
+            <obj_property name="ObjectShortName">i_frame.fcs</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/b_frame" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">b_frame</obj_property>
+         <obj_property name="ObjectShortName">b_frame</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/b_frame.src_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.src_mac</obj_property>
+            <obj_property name="ObjectShortName">b_frame.src_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/b_frame.dest_mac" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.dest_mac</obj_property>
+            <obj_property name="ObjectShortName">b_frame.dest_mac</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/b_frame.len" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.len</obj_property>
+            <obj_property name="ObjectShortName">b_frame.len</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/b_frame.payload" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.payload</obj_property>
+            <obj_property name="ObjectShortName">b_frame.payload</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/b_frame.fcs" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">.fcs</obj_property>
+            <obj_property name="ObjectShortName">b_frame.fcs</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/data_link_tb/Ethernet_1/Frame_Handler/r_rx_st" type="other" db_ref_id="1">
+         <obj_property name="ElementShortName">r_rx_st</obj_property>
+         <obj_property name="ObjectShortName">r_rx_st</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
