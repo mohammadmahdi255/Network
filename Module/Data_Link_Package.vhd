@@ -115,6 +115,7 @@ package body Data_Link_Package is
 		result.payload(1) := operation;
 		result.payload(2) := src_mac;
 		result.payload(3) := dest_mac;
+		result.payload(4 to 15) := (others => x"00");
 		return result;
 	end function;
 

@@ -74,6 +74,8 @@ begin
 			r_TX_MF_STR <= '0';
 			o_TX_BUSY   <= '1';
 			o_RX_RDY    <= '0';
+			o_PAYLOAD <= (others => x"00");
+			r_TX_BUFFER.payload <= (others => x"00");
 			r_DL_ST     <= ARP_REQUEST;
 
 		elsif rising_edge(i_CLK) then
@@ -98,13 +100,16 @@ begin
 						r_TX_BUFFER <= make_arp(c_ARP_REQUEST, i_MAC, c_BROAD_CAST);
 						r_TX_MF_STR <= '1';
 						r_DL_ST     <= ARP_REPLAY;
+						o_TX_BUSY <= '1';
 
 					when ARP_REPLAY  =>
+						o_TX_BUSY <= '1';
 
 					when ESTABLISHED =>
 						if i_TX_STR = '1' then
 							r_TX_BUFFER <= i_BUFFER;
 							r_TX_MF_STR <= '1';
+							o_TX_BUSY <= '1';
 						end if;
 
 				end case;
@@ -172,6 +177,8 @@ begin
 			r_TX_CRC.rst_n <= '0';
 			r_TX_CRC.en    <= '0';
 			r_TX_CRC.data  <= (others => '0');
+			
+			r_TX_FRAME <= (x"00", x"00", x"00", (others => x"00"),  (others => x"00"));
 
 			v_INDEX := 0;
 			r_TX_ST <= IDLE;
